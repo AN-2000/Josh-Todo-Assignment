@@ -91,10 +91,8 @@ addBtn.addEventListener("click", function () {
 });
 
 function checkHandler(e) {
-  console.log(1);
   let data = JSON.parse(localStorage.getItem("tasks"));
   let id = e.currentTarget.parentElement.getAttribute("data-id");
-  console.log(e.currentTarget.parentElement);
   let index = data.findIndex(function (e) {
     return e.id == id;
   });
@@ -112,5 +110,11 @@ function pHandler(e) {
   localStorage.setItem("tasks", JSON.stringify(data));
 }
 function deleteHandler(e) {
+  let data = JSON.parse(localStorage.getItem("tasks"));
+  let id = e.currentTarget.parentElement.getAttribute("data-id");
+  data = data.filter(function (e) {
+    return e.id != id;
+  });
+  localStorage.setItem("tasks", JSON.stringify(data));
   e.currentTarget.parentElement.remove();
 }
